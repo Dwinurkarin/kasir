@@ -14,6 +14,13 @@ class Produk extends Component
     public $stok;
     public $produkTerpilih;
 
+    public function mount()
+    {
+        if(auth()->user()->peran != 'admin') {
+            abort(403);
+        }
+    }
+
     public function pilihEdit($id)
     {
         $this->produkTerpilih = ModelProduk::findOrFail($id); 
